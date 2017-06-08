@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-sm-8">
+<h2> List of products </h2> 
+<ul>
+  <section *ngFor = "let product of products, let i = index">
+      <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <!--<img src="..." alt="...">-->
+      <div class="caption">
+        <h3>
+          <a [routerLink]="['/products', product.id]">
+            {{product.name}}
+          </a>
+        </h3>
+        <h4>Price: {{product.price}} </h4>
+        <p>{{product.detail}}</p>
+        <p><button class="btn btn-danger"
+         (click)="deleteProduct(product,i); $event.stopPropagation()" Onclick="ConfirmDelete()"> delete </button>  
+         <a class="btn btn-primary" [routerLink]="['/products', product.id]">
+            Edit
+          </a></p>
+      </div>
+    </div>
+  </div>
+  </section>
+</ul>
+
+  </div>
+
+  <div class="col-sm-4">
+    <form (ngSubmit)="createProduct()" #Productform="ngForm" class="form-group">
+  <div>
+    <label for="name"> Name: </label>
+    <input type="text" name="name" required [(ngModel)]="product.name" #name="ngModel" class="form-control">
+  </div>
+  <div>
+    <label for="price"> Price: </label>
+    <input type="number" name="price" required [(ngModel)]="product.price" #price="ngModel" class="form-control">
+  </div>
+  <div>
+    <label for="detail"> Detail: </label>
+    <input type="textarea" name="detail" required [(ngModel)]="product.detail" #detail="ngModel" class="form-control">
+  </div>
+  <div>
+    <input type="submit" class="btn btn-primary">
+  </div>
+</form>
+
+Product Name: {{product.name}}<br>
+Product Price: {{product.price}} <br>
+
+</div>
+</div>
